@@ -1,13 +1,14 @@
 #include "ft_printf.h"
+
 int	ft_printf(char *s, ...)
 {
-	int	count;
+	va_list			args;
+	int				count;
 	unsigned long	i;
-	uintptr_t address;
+	uintptr_t		address;
 
 	i = 0;
 	count = 0;
-	va_list args;
 	va_start(args, s);
 	while (i < ft_strlen(s))
 	{
@@ -25,11 +26,14 @@ int	ft_printf(char *s, ...)
 			if (s[i] == 'c')
 				count += ft_putchar(va_arg(args, int));
 			if (s[i] == 'x')
-				count += ft_putnbr_base(va_arg(args , unsigned int), "0123456789abcdef");
+				count += ft_putnbr_base(va_arg(args , unsigned int),
+				"0123456789abcdef");
 			if (s[i] == 'X')
-				count += ft_putnbr_base(va_arg(args , unsigned int), "0123456789ABCDEF");
+				count += ft_putnbr_base(va_arg(args , unsigned int),
+				"0123456789ABCDEF");
 			if (s[i] == 'u')
-				count += ft_putnbr_base(va_arg(args , unsigned int), "0123456789");
+				count += ft_putnbr_base(va_arg(args , unsigned int),
+				"0123456789");
 			if (s[i] == 'p')
 				{
 					count += ft_putstr("0x");
@@ -37,11 +41,12 @@ int	ft_printf(char *s, ...)
 					if (!address)
 						count += ft_putchar('0');
 					else
-						count += ft_putnbr_base((uintptr_t)address, "0123456789abcdef");
+						count += ft_putnbr_base((uintptr_t)address,
+						"0123456789abcdef");
 				}
 		}
 		i++;
 	}
 	va_end(args);
-	return(count);
+	return (count);
 }

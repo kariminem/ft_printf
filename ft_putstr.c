@@ -1,7 +1,7 @@
 #include "ft_printf.h"
 
 int	ft_putstr(char *s)
-{	
+{
 	int	count;
 
 	count = 0;
@@ -10,7 +10,7 @@ int	ft_putstr(char *s)
 		count += ft_putstr("(null)");
 		return (count);
 	}
-	while(*s)
+	while (*s)
 	{
 		count += ft_putchar(*s);
 		s++;
