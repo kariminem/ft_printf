@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-int	ft_printf(char *s, ...)
+int	ft_printf(const char *s, ...)
 {
 	va_list			args;
 	int				count;
@@ -35,15 +35,15 @@ int	ft_printf(char *s, ...)
 				count += ft_putnbr_base(va_arg(args , unsigned int),
 				"0123456789");
 			if (s[i] == 'p')
-				{
-					count += ft_putstr("0x");
-					address = (uintptr_t)va_arg(args, void *);
-					if (!address)
-						count += ft_putchar('0');
-					else
-						count += ft_putnbr_base((uintptr_t)address,
-						"0123456789abcdef");
-				}
+			{
+				count += ft_putstr("0x");
+				address = (uintptr_t)va_arg(args, void *);
+				if (!address)
+					count += ft_putchar('0');
+				else
+					count += ft_putnbr_base((uintptr_t)address,
+					"0123456789abcdef");
+			}
 		}
 		i++;
 	}
